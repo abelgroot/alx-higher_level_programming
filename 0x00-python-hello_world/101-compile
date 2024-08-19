@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$PYFILE" ]; then
+	echo "PYFILE is not set."
+	exit 1
+fi
+
+# Compile the Python script into bytecode
+output_file="${PYFILE}c"
+echo "Compiling $PYFILE ..."
+python3 -m  py_compile "$PYFILE"
+
+# Move the compiled file to the expected output filename
+compiled_file=$(dirname "$PYFILE")/__pycache__/$(basename "$PYFILE" .py).cpython-38.pyc
+mv "$compiled_file" "$output_file"
+rm -rf __pycache__
