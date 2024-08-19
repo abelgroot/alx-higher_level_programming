@@ -8,9 +8,16 @@ fi
 # Compile the Python script into bytecode
 output_file="${PYFILE}c"
 echo "Compiling $PYFILE ..."
-python3 -m  py_compile "$PYFILE"
+
+python3 -m py_compile "$PYFILE"
+
+# Get the Python version (major.minor)
+py_version=$(python3 -V 2>&1 | awk '{print $2}')  # Extracts the version (e.g., 3.8.5)
+py_major_minor=$(echo $py_version | cut -d. -f1,2)  # Extracts major.minor (e.g., 3.8)
 
 # Move the compiled file to the expected output filename
-compiled_file=$(dirname "$PYFILE")/__pycache__/$(basename "$PYFILE" .py).cpython-38.pyc
+compiled_file=$(dirname "$PYFILE")/__pycache__/$(basename "$PYFILE" .py).cpython-${py_major_minor//./}.pyc
 mv "$compiled_file" "$output_file"
+
+# Clean up the __pycache__ directory
 rm -rf __pycache__
