@@ -1,18 +1,25 @@
 #!/usr/bin/python3
 def update_dictionary(a_dictionary, key, value):
-    # Use filter to find if the key exists
-    existing_keys = list(filter(lambda k: k == key, a_dictionary.keys()))
+    # Update or add key-value pairs at the top level
+    def update(d, k, v):
+        if k in d:
+            d[k] = v
+        else:
+            d[k] = v
 
-    # Update or add the key-value pair
-    updated_dict = dict(
-        map(
-            lambda item: (item[0], value) if item[0] == key else item,
-            a_dictionary.items(),
-        )
-    )
+    # Use map and lambda to update the dictionary
+    def update_recursive(d, k, v):
+        # If the dictionary has the key at the top level
+        if k in d:
+            update(d, k, v)
+        else:
+            # If the key is not found at the top level, check for nested dictionaries
+            for sub_key in d:
+                if isinstance(d[sub_key], dict):
+                    # Recursively update nested dictionaries
+                    update_recursive(d[sub_key], k, v)
+            # If not found in nested dictionaries, add it at the top level
+            update(d, k, v)
 
-    # If the key doesn't exist, add it
-    if not existing_keys:
-        updated_dict[key] = value
-
-    return updated_dict
+    update_recursive(a_dictionary, key, value)
+    return a_dictionary
