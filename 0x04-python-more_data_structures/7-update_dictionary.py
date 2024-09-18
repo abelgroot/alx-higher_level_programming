@@ -13,7 +13,6 @@ def update_dictionary(a_dictionary, key, value):
         if k in d:
             update(d, k, v)
         else:
-            # If the key is not found at the top level, check for nested dictionaries
             for sub_key in d:
                 if isinstance(d[sub_key], dict):
                     # Recursively update nested dictionaries
