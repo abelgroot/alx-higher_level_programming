@@ -3,11 +3,13 @@
 
 
 class Rectangle:
-    """Defines a Rectangle with width, height, instance counting, and custom print symbol"""
+    """Defines a Rectangle with width, height,
+    instance counting, and custom print symbol"""
 
     number_of_instances = 0  # Public class attribute to track instances
     print_symbol = (
-        "#"  # Public class attribute to define symbol for string representation
+        "#"  """Public class attribute to define
+        symbol for string representation"""
     )
 
     def __init__(self, width=0, height=0):
