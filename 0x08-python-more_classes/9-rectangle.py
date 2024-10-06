@@ -3,11 +3,13 @@
 
 
 class Rectangle:
-    """Defines a Rectangle with width, height, instance counting, and custom print symbol"""
+    """Defines a Rectangle with width, height,
+    instance counting, and custom print symbol"""
 
     number_of_instances = 0  # Public class attribute to track instances
     print_symbol = (
-        "#"  # Public class attribute to define symbol for string representation
+        "#" """Public class attribute to
+        define symbol for string representation"""
     )
 
     def __init__(self, width=0, height=0):
@@ -93,7 +95,8 @@ class Rectangle:
             rect_1 (Rectangle): first rectangle
             rect_2 (Rectangle): second rectangle
         Raises:
-            TypeError: If either rect_1 or rect_2 is not an instance of Rectangle
+            TypeError: If either rect_1 or rect_2
+            is not an instance of Rectangle
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
