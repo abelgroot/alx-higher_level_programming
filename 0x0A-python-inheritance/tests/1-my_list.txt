@@ -46,7 +46,6 @@
 [5, 4, 3, 2, 1]
 
 # Test with a list that contains non-integer elements (error handling)
->>> MyList = __import__('1-my_list').MyList
 >>> invalid_list = MyList()
 >>> invalid_list.append(1)
 >>> invalid_list.append("string")
