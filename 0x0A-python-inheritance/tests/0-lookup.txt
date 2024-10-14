@@ -1,5 +1,3 @@
-# Test cases for the lookup function
-
 >>> lookup = __import__('0-lookup').lookup
 
 >>> class MyClass1:
