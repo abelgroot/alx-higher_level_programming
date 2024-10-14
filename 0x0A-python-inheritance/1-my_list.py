@@ -3,9 +3,11 @@
 This module defines a class MyList that inherits from the built-in list class.
 """
 
+
 class MyList(list):
     """
-    A subclass of list that implements a method to print the list in sorted order.
+    A subclass of list that implements a
+    method to print the list in sorted order.
     """
 
     def print_sorted(self):
