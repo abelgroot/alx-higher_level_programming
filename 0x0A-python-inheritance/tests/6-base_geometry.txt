@@ -1,0 +1,12 @@
+# Test 1: Create an instance of BaseGeometry and check its type
+>>> BaseGeometry = __import__('6-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+>>> type(bg)
+<class '6-base_geometry.BaseGeometry'>
+
+# Test 2: Call area() method and check for exception
+>>> try:
+...     bg.area()
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[Exception] area() is not implemented
