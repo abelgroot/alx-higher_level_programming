@@ -2,27 +2,45 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-# Test 2: Validate a valid integer value
+# Test 2: Check the type of the instance
+>>> type(bg)
+<class '7-base_geometry.BaseGeometry'>
+
+# Test 3: Validate a valid integer value
 >>> bg.integer_validator("my_int", 12)
 >>> bg.integer_validator("width", 89)
 
-# Test 3: Validate a string value (should raise TypeError)
+# Test 4: Validate a string value (should raise TypeError)
 >>> try:
 ...     bg.integer_validator("name", "John")
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [TypeError] name must be an integer
 
-# Test 4: Validate zero value (should raise ValueError)
+# Test 5: Validate zero value (should raise ValueError)
 >>> try:
 ...     bg.integer_validator("age", 0)
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [ValueError] age must be greater than 0
 
-# Test 5: Validate a negative value (should raise ValueError)
+# Test 6: Validate a negative value (should raise ValueError)
 >>> try:
 ...     bg.integer_validator("distance", -4)
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [ValueError] distance must be greater than 0
+
+# Test 7: Validate a non-integer value (should raise TypeError)
+>>> try:
+...     bg.integer_validator("height", 13.5)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] height must be an integer
+
+# Test 8: Validate the area method (should raise Exception)
+>>> try:
+...     bg.area()
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[Exception] area() is not implemented
