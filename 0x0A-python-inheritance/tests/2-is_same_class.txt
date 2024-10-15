@@ -1,0 +1,22 @@
+>>> from 2-is_same_class import is_same_class
+
+Test is_same_class with int:
+>>> is_same_class(1, int)
+True
+
+Test is_same_class with float:
+>>> is_same_class(1.0, int)
+False
+
+Test is_same_class with object:
+>>> is_same_class(1, object)
+False
+
+Test is_same_class with list:
+>>> is_same_class([], list)
+True
+
+Test is_same_class with subclass (False because it should be exact class):
+>>> class MyInt(int): pass
+>>> is_same_class(MyInt(), int)
+False
