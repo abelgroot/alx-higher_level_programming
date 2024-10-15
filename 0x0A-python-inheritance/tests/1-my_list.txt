@@ -44,3 +44,10 @@
 [1, 2, 3, 4, 5]
 >>> print(reverse_list)
 [5, 4, 3, 2, 1]
+
+# Test with a list of negative and postive integers
+>>> negative_list = MyList([2, 0, 1, 4, -2])
+>>> negative_list.print_sorted()
+[-2, 0, 1, 2, 4]
+>>> print(negative_list)
+[2, 0, 1, 4, -2]
