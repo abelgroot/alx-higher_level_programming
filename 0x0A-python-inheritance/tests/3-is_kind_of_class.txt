@@ -1,0 +1,17 @@
+>>> is_kind_of_class = __import__('3-is_kind_of_class').is_kind_of_class
+>>> is_kind_of_class(1, int)
+True
+>>> is_kind_of_class(1, float)
+False
+>>> is_kind_of_class(1, object)
+True
+>>> is_kind_of_class([], list)
+True
+>>> is_kind_of_class([], object)
+True
+>>> class MyInt(int):
+...     pass
+>>> is_kind_of_class(MyInt(), int)
+True
+>>> is_kind_of_class(MyInt(), object)
+True
