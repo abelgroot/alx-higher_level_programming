@@ -8,7 +8,8 @@ class BaseGeometry:
     """A class that defines basic geometric operations."""
 
     def area(self):
-        """Method that raises an Exception with the message area() is not implemented."""
+        """Method that raises an Exception
+        with the message area() is not implemented."""
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
