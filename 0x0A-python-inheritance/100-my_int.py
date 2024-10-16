@@ -3,7 +3,8 @@
 
 
 class MyInt(int):
-    """A class representing a rebel integer that inverts == and != operators."""
+    """A class representing a rebel
+    integer that inverts == and != operators."""
 
     def __eq__(self, other):
         """Override == operator to behave as !=."""
