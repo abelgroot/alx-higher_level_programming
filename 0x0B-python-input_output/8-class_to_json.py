@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+"""
+a function that return dictionary description with struct.
+"""
+
+
 def class_to_json(obj):
     """
     Returns the dictionary description with simple data structure
