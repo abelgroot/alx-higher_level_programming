@@ -24,4 +24,12 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2.height, 10)
         self.assertEqual(r2.x, 0)
         self.assertEqual(r2.y, 0)
-        self​⬤
+        self.assertEqual(r2.id, 2)
+
+        self.assertEqual(r3.id, 12)
+        self.assertEqual(r3.width, 10)
+        self.assertEqual(r3.height, 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
