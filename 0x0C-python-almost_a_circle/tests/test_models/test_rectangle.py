@@ -92,19 +92,112 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.area(), 56)
 
     def test_display(self):
-        r1 = Rectangle(4, 3)
-        expected_output = "####\n####\n####\n"
-
-        # Redirect stdout to capture print output
+        """Test the display method of Rectangle"""
+        r1 = Rectangle(4, 3, 2, 1)
+        expected_output = "\n  ####\n  ####\n  ####\n"
+        
+        # Capture the output of the display method
         captured_output = StringIO()
         sys.stdout = captured_output
-
         r1.display()
+        sys.stdout = sys.__stdout__  # Reset redirect.
+        
+        self.assertEqual(captured_output.getvalue(), expected_output)
 
-        # Reset redirect
-        sys.stdout = sys.__stdout__
+    def test_display_with_no_offset(self):
+        """Test the display method with no x and y offsets"""
+        r2 = Rectangle(3, 2, 0, 0)
+        expected_output = "###\n###\n"
+        
+        # Capture the output of the display method
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r2.display()
+        sys.stdout = sys.__stdout__  # Reset redirect.
+        
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_with_only_y_offset(self):
+        """Test the display method with only y offset"""
+        r3 = Rectangle(5, 4, 0, 2)
+        expected_output = "\n\n#####\n#####\n#####\n#####\n"
+
+        # Capture the output of the display method
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r3.display()
+        sys.stdout = sys.__stdout__  # Reset redirect.
 
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_with_only_x_offset(self):
+        """Test the display method with only x offset"""
+        r4 = Rectangle(2, 2, 3, 0)
+        expected_output = "   ##\n   ##\n"
+
+        # Capture the output of the display method
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r4.display()
+        sys.stdout = sys.__stdout__  # Reset redirect.
+
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_update_id(self):
+        """Test updating the id of the Rectangle."""
+        r1 = Rectangle(10, 2)
+        r1.update(89)
+        self.assertEqual(r1.id, 89)
+
+    def test_update_width(self):
+        """Test updating the width of the Rectangle."""
+        r1 = Rectangle(10, 2)
+        r1.update(89, 2)
+        self.assertEqual(r1.width, 2)
+
+    def test_update_height(self):
+        """Test updating the height of the Rectangle."""
+        r1 = Rectangle(10, 2)
+        r1.update(89, 2, 3)
+        self.assertEqual(r1.height, 3)
+
+    def test_update_x(self):
+        """Test updating the x attribute of the Rectangle."""
+        r1 = Rectangle(10, 2)
+        r1.update(89, 2, 3, 4)
+        self.assertEqual(r1.x, 4)
+
+    def test_update_y(self):
+        """Test updating the y attribute of the Rectangle."""
+        r1 = Rectangle(10, 2)
+        r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(r1.y, 5)
+
+    def test_update_multiple_attributes(self):
+        """Test updating multiple attributes at once."""
+        r1 = Rectangle(10, 2)
+        r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(r1.id, 89)
+        self.assertEqual(r1.width, 2)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 4)
+        self.assertEqual(r1.y, 5)
+
+    def test_update_no_args(self):
+        """Test that no arguments do not change attributes."""
+        r1 = Rectangle(10, 2)
+        original_id = r1.id
+        original_width = r1.width
+        original_height = r1.height
+        original_x = r1.x
+        original_y = r1.y
+        
+        r1.update()
+        self.assertEqual(r1.id, original_id)
+        self.assertEqual(r1.width, original_width)
+        self.assertEqual(r1.height, original_height)
+        self.assertEqual(r1.x, original_x)
+        self.assertEqual(r1.y, original_y)
 
 
 if __name__ == "__main__":

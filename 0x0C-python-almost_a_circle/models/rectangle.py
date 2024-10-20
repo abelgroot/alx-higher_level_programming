@@ -73,12 +73,29 @@ class Rectangle(Base):
 
     # Display # on screen
     def display(self):
-        """Prints the rectangle with the character #"""
+        """Prints the rectangle with the character #, considering x and y offsets"""
+        # Print y offset
+        print("\n" * self.y, end="")
+        # Print the rectangle with x offset
         for _ in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
 
     # overide the __str__ function
     def __str__(self):
         """Returns a string representation of the rectangle"""
         return (f"[Rectangle] ({self.id}) {self.x}/{self.y} "
                 f"- {self.width}/{self.height}")
+
+    # update using arguments to each attributes
+    def update(self, *args):
+        """Update the rectangle's attributes based on the arguments."""
+        if len(args) > 0:
+            self.id = args[0]
+        if len(args) > 1:
+            self.width = args[1]
+        if len(args) > 2:
+            self.height = args[2]
+        if len(args) > 3:
+            self.x = args[3]
+        if len(args) > 4:
+            self.y = args[4]
