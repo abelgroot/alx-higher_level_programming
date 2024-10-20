@@ -81,7 +81,7 @@ class TestRectangle(unittest.TestCase):
             r.y = -1
         self.assertEqual(str(cm.exception), "y must be >= 0")
 
-    def test_area_of_rectangle(self):
+    def test_area(self):
         """Test area of a rectangle"""
         r1 = Rectangle(3, 2)
         r2 = Rectangle(2, 10)
