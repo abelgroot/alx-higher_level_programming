@@ -79,6 +79,16 @@ class TestRectangle(unittest.TestCase):
             r.y = -1
         self.assertEqual(str(cm.exception), "y must be >= 0")
 
+    def test_area_of_rectangle(self):
+        """Test area of a rectangle"""
+        r1 = Rectangle(3, 2)
+        r2 = Rectangle(2, 10)
+        r3 = Rectangle(8, 7, 0, 0, 12)
+
+        self.assertEqual(r1.area(), 6)
+        self.assertEqual(r2.area(), 20)
+        self.assertEqual(r3.area(), 56)
+
 
 if __name__ == "__main__":
     unittest.main()
