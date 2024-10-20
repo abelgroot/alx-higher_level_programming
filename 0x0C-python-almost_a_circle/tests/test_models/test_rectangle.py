@@ -35,6 +35,50 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.width, 10)
         self.assertEqual(r3.height, 2)
 
+    def test_invalid_width(self):
+        """Test invalid width values"""
+        with self.assertRaises(TypeError) as cm:
+            Rectangle("10", 2)
+        self.assertEqual(str(cm.exception), "width must be an integer")
+
+        r = Rectangle(10, 2)
+        with self.assertRaises(ValueError) as cm:
+            r.width = -10
+        self.assertEqual(str(cm.exception), "width must be > 0")
+
+    def test_invalid_height(self):
+        """Test invalid height values"""
+        with self.assertRaises(TypeError) as cm:
+            Rectangle(10, "2")
+        self.assertEqual(str(cm.exception), "height must be an integer")
+
+        r = Rectangle(10, 2)
+        with self.assertRaises(ValueError) as cm:
+            r.height = 0
+        self.assertEqual(str(cm.exception), "height must be > 0")
+
+    def test_invalid_x(self):
+        """Test invalid x values"""
+        with self.assertRaises(TypeError) as cm:
+            Rectangle(10, 2, "3")
+        self.assertEqual(str(cm.exception), "x must be an integer")
+
+        r = Rectangle(10, 2)
+        with self.assertRaises(ValueError) as cm:
+            r.x = -1
+        self.assertEqual(str(cm.exception), "x must be >= 0")
+
+    def test_invalid_y(self):
+        """Test invalid y values"""
+        with self.assertRaises(TypeError) as cm:
+            Rectangle(10, 2, 3, "4")
+        self.assertEqual(str(cm.exception), "y must be an integer")
+
+        r = Rectangle(10, 2)
+        with self.assertRaises(ValueError) as cm:
+            r.y = -1
+        self.assertEqual(str(cm.exception), "y must be >= 0")
+
 
 if __name__ == "__main__":
     unittest.main()
