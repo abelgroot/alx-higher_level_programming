@@ -316,6 +316,18 @@ class TestRectangle(unittest.TestCase):
         ]
         self.assertEqual(Base.from_json_string(json_string), expected_output)
 
+    def test_create_rectangle(self):
+        """Test creating a Rectangle instance with attributes set."""
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+
+        self.assertEqual(
+            str(r1), str(r2)
+        )  # Check if the string representations are equal
+        self.assertFalse(r1 is r2)  # Check if they are different instances
+        self.assertFalse(r1 == r2)  # Check if they are not considered equal
+
 
 if __name__ == "__main__":
     unittest.main()

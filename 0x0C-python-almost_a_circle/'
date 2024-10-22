@@ -65,10 +65,6 @@ class Base:
         Returns:
             Instance of Rectangle or Square with attributes set.
         """
-        # Deferred import to avoid circular dependency
-        from models.rectangle import Rectangle
-        from models.square import Square
-
         if cls.__name__ == "Rectangle":
             # Create a dummy Rectangle instance
             dummy = Rectangle(1, 1)  # Using default values for dummy attributes

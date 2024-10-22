@@ -134,6 +134,18 @@ class TestSquare(unittest.TestCase):
         self.assertIn("x", s2_dict)
         self.assertIn("y", s2_dict)
 
+    def test_create_square(self):
+        """Test creating a Square instance with attributes set."""
+        s1 = Square(5, 1, 2)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+
+        self.assertEqual(
+            str(s1), str(s2)
+        )  # Check if the string representations are equal
+        self.assertFalse(s1 is s2)  # Check if they are different instances
+        self.assertFalse(s1 == s2)  # Check if they are not considered equal
+
 
 if __name__ == "__main__":
     unittest.main()
