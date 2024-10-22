@@ -95,26 +95,26 @@ class TestRectangle(unittest.TestCase):
         """Test the display method of Rectangle"""
         r1 = Rectangle(4, 3, 2, 1)
         expected_output = "\n  ####\n  ####\n  ####\n"
-        
+
         # Capture the output of the display method
         captured_output = StringIO()
         sys.stdout = captured_output
         r1.display()
         sys.stdout = sys.__stdout__  # Reset redirect.
-        
+
         self.assertEqual(captured_output.getvalue(), expected_output)
 
     def test_display_with_no_offset(self):
         """Test the display method with no x and y offsets"""
         r2 = Rectangle(3, 2, 0, 0)
         expected_output = "###\n###\n"
-        
+
         # Capture the output of the display method
         captured_output = StringIO()
         sys.stdout = captured_output
         r2.display()
         sys.stdout = sys.__stdout__  # Reset redirect.
-        
+
         self.assertEqual(captured_output.getvalue(), expected_output)
 
     def test_display_with_only_y_offset(self):
@@ -191,7 +191,7 @@ class TestRectangle(unittest.TestCase):
         original_height = r1.height
         original_x = r1.x
         original_y = r1.y
-        
+
         r1.update()
         self.assertEqual(r1.id, original_id)
         self.assertEqual(r1.width, original_width)
@@ -244,6 +244,34 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 10, 10, 10)
         r1.update(89, 2, height=3)  # height should remain 10
         self.assertEqual(r1.height, 10)  # Check that height is still 10
+
+    def test_to_dictionary(self):
+        """Test the to_dictionary method of Rectangle."""
+        r1 = Rectangle(10, 2, 1, 9)
+        r1_dict = r1.to_dictionary()
+        expected_dict = {"id": r1.id, "width": 10, "height": 2, "x": 1, "y": 9}
+
+        self.assertEqual(r1_dict, expected_dict)
+        self.assertEqual(len(r1_dict), 5)
+        self.assertIn("id", r1_dict)
+        self.assertIn("width", r1_dict)
+        self.assertIn("height", r1_dict)
+        self.assertIn("x", r1_dict)
+        self.assertIn("y", r1_dict)
+
+    def test_to_dictionary_with_default_values(self):
+        """Test to_dictionary method with default values."""
+        r2 = Rectangle(1, 1)
+        r2_dict = r2.to_dictionary()
+        expected_dict = {"id": r2.id, "width": 1, "height": 1, "x": 0, "y": 0}
+
+        self.assertEqual(r2_dict, expected_dict)
+        self.assertEqual(len(r2_dict), 5)
+        self.assertIn("id", r2_dict)
+        self.assertIn("width", r2_dict)
+        self.assertIn("height", r2_dict)
+        self.assertIn("x", r2_dict)
+        self.assertIn("y", r2_dict)
 
 
 if __name__ == "__main__":
