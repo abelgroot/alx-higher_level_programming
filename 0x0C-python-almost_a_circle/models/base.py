@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Base class module"""
 import json
+import os
 
 
 class Base:
@@ -79,3 +80,22 @@ class Base:
         # Use update method to assign attributes from dictionary
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """Returns a list of instances from a JSON file.
+
+        If the file doesn't exist, returns an empty list.
+        Otherwise, returns a list of instances of the current class.
+        """
+        filename = f"{cls.__name__}.json"
+
+        if not os.path.exists(filename):
+            return []
+
+        with open(filename, "r") as file:
+            json_string = file.read()
+
+        list_dictionaries = cls.from_json_string(json_string)
+        instances = [cls.create(**d) for d in list_dictionaries]
+        return instances
