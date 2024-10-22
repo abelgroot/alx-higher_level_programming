@@ -71,7 +71,7 @@ class Base:
 
         if cls.__name__ == "Rectangle":
             # Create a dummy Rectangle instance
-            dummy = Rectangle(1, 1)  # Using default values for dummy attributes
+            dummy = Rectangle(1, 1)
         elif cls.__name__ == "Square":
             # Create a dummy Square instance
             dummy = Square(1)  # Using default value for dummy size
