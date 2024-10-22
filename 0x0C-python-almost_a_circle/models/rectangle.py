@@ -73,7 +73,8 @@ class Rectangle(Base):
 
     # Display # on screen
     def display(self):
-        """Prints the rectangle with the character #, considering x and y offsets"""
+        """Prints the rectangle with the character #,
+        considering x and y offsets"""
         # Print y offset
         print("\n" * self.y, end="")
         # Print the rectangle with x offset
