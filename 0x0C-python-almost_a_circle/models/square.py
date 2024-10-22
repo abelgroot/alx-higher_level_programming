@@ -1,38 +1,51 @@
 #!/usr/bin/python3
-
+"""Defines a square class that inherits from Rectangle."""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Represent a square."""
+    """Represents a square."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square."""
+        """Initialize a new Square instance.
+
+        Args:
+            size (int): The size of the new square.
+            x (int): The x-coordinate of the new square.
+            y (int): The y-coordinate of the new square.
+            id (int): The identity of the new square.
+        """
         super().__init__(size, size, x, y, id)
-        self.size = size  # This will call the setter
+        self.size = size
 
     @property
     def size(self):
         """Get the size of the square."""
-        return self.width  # Since width == height for squares
+        return self.width
 
     @size.setter
     def size(self, value):
-        """Set the size of the square."""
-        self.width = value  # width and height are the same
+        """Set the size of the square.
+
+        Args:
+            value (int): The size to set for the square.
+
+        Raises:
+            TypeError: If `value` is not an integer.
+            ValueError: If `value` is <= 0.
+        """
+        self.width = value
         self.height = value
 
     def display(self):
-        """Display the square with the '#' character."""
+        """Print the square using the `#` character."""
         if self.size == 0:
-            print("")  # If size is 0, just print a blank line
+            print("")  # Blank line if size is 0
             return
-        for i in range(self.y):
-            print("")  # Print y offset
-        for i in range(self.size):
-            print(
-                " " * self.x + "#" * self.size
-            )  # Print x offset followed by the square
+        for _ in range(self.y):
+            print("")
+        for _ in range(self.size):
+            print(" " * self.x + "#" * self.size)
 
     def __str__(self):
         """Return the string representation of the square."""
