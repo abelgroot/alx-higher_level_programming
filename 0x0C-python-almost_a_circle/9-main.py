@@ -22,3 +22,8 @@ if __name__ == "__main__":
     print(s3)
     print(s3.area())
     s3.display()
+
+    s4 = Square(2, 1, 1)
+    print(s4)
+    print(s4.area())
+    s4.display()

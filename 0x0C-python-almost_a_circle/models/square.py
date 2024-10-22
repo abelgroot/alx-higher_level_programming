@@ -50,3 +50,27 @@ class Square(Rectangle):
     def __str__(self):
         """Return the string representation of the square."""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+
+    def update(self, *args, **kwargs):
+        """Assign attributes based on the order of *args or **kwargs.
+
+        Args:
+            *args: Non-keyword arguments.
+                1st argument -> id attribute
+                2nd argument -> size attribute
+                3rd argument -> x attribute
+                4th argument -> y attribute
+            **kwargs: Keyword arguments representing attribute key-value pairs.
+        """
+        if args:
+            # Only update attributes with args if args are provided
+            attributes = ["id", "size", "x", "y"]
+            for index, value in enumerate(args):
+                if index < len(attributes):
+                    setattr(self, attributes[index], value)
+
+        # Skip updating with kwargs if args are provided
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key in ["id", "size", "x", "y"]:
+                    setattr(self, key, value)
