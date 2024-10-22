@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Unittest for Rectangle class"""
+import json
+import os
 import sys
 import unittest
 from io import StringIO
@@ -272,6 +274,28 @@ class TestRectangle(unittest.TestCase):
         self.assertIn("height", r2_dict)
         self.assertIn("x", r2_dict)
         self.assertIn("y", r2_dict)
+
+    def test_save_to_file_with_rectangle(self):
+        """Test save_to_file with a list of Rectangle instances."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+
+        with open("Rectangle.json", "r") as f:
+            contents = f.read()
+            expected_dicts = [
+                {"id": r1.id, "width": 10, "height": 7, "x": 2, "y": 8},
+                {"id": r2.id, "width": 2, "height": 4, "x": 0, "y": 0},
+            ]
+            expected_json = json.dumps(expected_dicts)
+            self.assertEqual(contents, expected_json)
+
+    def tearDown(self):
+        """Remove created files after each test."""
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
 
 
 if __name__ == "__main__":

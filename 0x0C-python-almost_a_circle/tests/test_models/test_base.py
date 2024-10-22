@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Unittest for Base class"""
+import json
+import os
 import unittest
 
 from models.base import Base
@@ -32,6 +34,40 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b5.id, 1)
         self.assertEqual(b6.id, 25)
         self.assertEqual(b7.id, 2)
+
+    def test_to_json_string_with_none(self):
+        """Test to_json_string with None."""
+        self.assertEqual(Base.to_json_string(None), "[]")
+
+    def test_to_json_string_with_empty_list(self):
+        """Test to_json_string with an empty list."""
+        self.assertEqual(Base.to_json_string([]), "[]")
+
+    def test_to_json_string_with_valid_list(self):
+        """Test to_json_string with a valid list of dictionaries."""
+        dict_list = [{"id": 1, "width": 10, "height": 7}]
+        json_string = Base.to_json_string(dict_list)
+        expected_json = json.dumps(dict_list)
+        self.assertEqual(json_string, expected_json)
+
+    def test_save_to_file_with_none(self):
+        """Test save_to_file with None."""
+        Base.save_to_file(None)
+        with open("Base.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_to_file_with_empty_list(self):
+        """Test save_to_file with an empty list."""
+        Base.save_to_file([])
+        with open("Base.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def tearDown(self):
+        """Remove created files after each test."""
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
 
 
 if __name__ == "__main__":
