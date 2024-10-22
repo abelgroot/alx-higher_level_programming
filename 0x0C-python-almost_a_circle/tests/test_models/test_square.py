@@ -108,6 +108,32 @@ class TestSquare(unittest.TestCase):
             str(s1), "[Square] (99) 5/5 - 8"
         )  # *args takes priority over **kwargs
 
+    def test_to_dictionary(self):
+        """Test the to_dictionary method of Square."""
+        s1 = Square(10, 2, 1)
+        s1_dict = s1.to_dictionary()
+        expected_dict = {"id": s1.id, "size": 10, "x": 2, "y": 1}
+
+        self.assertEqual(s1_dict, expected_dict)
+        self.assertEqual(len(s1_dict), 4)
+        self.assertIn("id", s1_dict)
+        self.assertIn("size", s1_dict)
+        self.assertIn("x", s1_dict)
+        self.assertIn("y", s1_dict)
+
+    def test_to_dictionary_with_default_values(self):
+        """Test to_dictionary method with default values."""
+        s2 = Square(1)
+        s2_dict = s2.to_dictionary()
+        expected_dict = {"id": s2.id, "size": 1, "x": 0, "y": 0}
+
+        self.assertEqual(s2_dict, expected_dict)
+        self.assertEqual(len(s2_dict), 4)
+        self.assertIn("id", s2_dict)
+        self.assertIn("size", s2_dict)
+        self.assertIn("x", s2_dict)
+        self.assertIn("y", s2_dict)
+
 
 if __name__ == "__main__":
     unittest.main()
