@@ -146,6 +146,29 @@ class TestSquare(unittest.TestCase):
         self.assertFalse(s1 is s2)  # Check if they are different instances
         self.assertFalse(s1 == s2)  # Check if they are not considered equal
 
+    def test_save_to_file_and_load_from_file_square(self):
+        """Test saving and loading from file for Square."""
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+
+        # Save instances to file
+        Square.save_to_file([s1, s2])
+
+        # Load instances from file
+        loaded_squares = Square.load_from_file()
+
+        # Verify loaded instances
+        self.assertEqual(len(loaded_squares), 2)
+        self.assertEqual(loaded_squares[0].size, s1.size)
+        self.assertEqual(loaded_squares[1].size, s2.size)
+
+    def tearDown(self):
+        """Remove JSON files after tests."""
+        import os
+
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
 
 if __name__ == "__main__":
     unittest.main()

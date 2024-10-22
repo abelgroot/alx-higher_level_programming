@@ -328,6 +328,30 @@ class TestRectangle(unittest.TestCase):
         self.assertFalse(r1 is r2)  # Check if they are different instances
         self.assertFalse(r1 == r2)  # Check if they are not considered equal
 
+    def test_save_to_file_and_load_from_file(self):
+        """Test saving and loading from file for Rectangle."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        # Save instances to file
+        Rectangle.save_to_file([r1, r2])
+
+        # Load instances from file
+        loaded_rectangles = Rectangle.load_from_file()
+
+        # Verify loaded instances
+        self.assertEqual(len(loaded_rectangles), 2)
+        self.assertEqual(loaded_rectangles[0].width, r1.width)
+        self.assertEqual(loaded_rectangles[0].height, r1.height)
+        self.assertEqual(loaded_rectangles[1].width, r2.width)
+        self.assertEqual(loaded_rectangles[1].height, r2.height)
+
+    def tearDown(self):
+        """Remove JSON files after tests."""
+        import os
+
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
 
 if __name__ == "__main__":
     unittest.main()
