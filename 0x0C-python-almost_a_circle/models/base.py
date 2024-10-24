@@ -3,6 +3,7 @@
 import csv
 import json
 import os
+import turtle
 
 
 class Base:
@@ -144,3 +145,43 @@ class Base:
                 return list_objs
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws Rectangles and Squares using the turtle module."""
+        screen = turtle.Screen()
+        screen.bgcolor("white")
+        t = turtle.Turtle()
+        t.shape("turtle")
+        t.speed(3)  # Slow speed for animation
+
+        # Function to draw a rectangle
+        def draw_rectangle(t, width, height, x, y):
+            """Draw a rectangle with turtle."""
+            t.penup()
+            t.goto(x, y)  # Go to the specified starting position
+            t.pendown()
+            for _ in range(2):
+                t.forward(width)
+                t.left(90)
+                t.forward(height)
+                t.left(90)
+
+        # Function to draw a square
+        def draw_square(t, size, x, y):
+            """Draw a square with turtle."""
+            draw_rectangle(t, size, size, x, y)
+
+        # Draw all rectangles
+        t.color("blue")
+        for rect in list_rectangles:
+            draw_rectangle(t, rect.width, rect.height, rect.x, rect.y)
+
+        # Draw all squares
+        t.color("green")
+        for sqr in list_squares:
+            draw_square(t, sqr.size, sqr.x, sqr.y)
+
+        # Hide the turtle and finish the drawing
+        t.hideturtle()
+        turtle.done()
