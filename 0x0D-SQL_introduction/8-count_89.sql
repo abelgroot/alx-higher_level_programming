@@ -1,3 +1,2 @@
---display number of records with id=89
---in the table first_table of hbtn_0c_0 database
-SELECT COUNT(id) FROM first_table WHERE id=89; 
+-- Script to count the number of records with id = 89
+SELECT COUNT(*) FROM first_table WHERE id = 89;
