@@ -2,7 +2,7 @@
 """
 This script takes a URL as input,
 sends a request to the URL, and displays the body of the
-response. If the HTTP status code is 
+response. If the HTTP status code is
 greater than or equal to 400, it prints the error code.
 """
 
