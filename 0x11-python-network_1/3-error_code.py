@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script takes a URL as input, sends a request to the URL, and displays the body of the
+This script takes a URL as input,sends a request
+to the URL, and displays the body of the
 response (decoded in utf-8). If an HTTP error occurs, it prints the error code.
 """
 
